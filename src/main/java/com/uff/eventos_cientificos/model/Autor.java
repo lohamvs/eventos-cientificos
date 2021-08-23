@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.eventos.cientificos;
+package com.uff.eventos_cientificos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.persistence.Column;
@@ -12,14 +14,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author loham.silva
  */
 @Entity
-public class Autor {
+@NamedQueries({
+    @NamedQuery(name="Autor.buscaTodos",
+                query="SELECT a FROM Autor a"),
+    @NamedQuery(name="Autor.buscaPorVolume",
+                query="SELECT a FROM Autor a WHERE a.artigo.volume.id = :volumeId")
+})
+public class Autor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -51,13 +62,15 @@ public class Autor {
     String orcId;
     
     @ManyToOne
+    @JoinColumn(name="artigo_id", nullable=false)
+    @JsonBackReference
     Artigo artigo;
     
     public static final Pattern emailPattern =  
         Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE); 
     
     public static final Pattern orcIdPattern =  
-        Pattern.compile("^[a-zA-Z]+-[a-zA-Z]+-[a-zA-Z]+-[a-zA-Z]+$", Pattern.CASE_INSENSITIVE); 
+        Pattern.compile("^\\d{4}-\\d{4}-\\d{4}-(\\d{3}X|\\d{4})$", Pattern.CASE_INSENSITIVE); 
     
     public Autor(){}
 
@@ -144,12 +157,14 @@ public class Autor {
     }
 
     public void setOrcId(String orcId) {
-        if (validateOrcId(email)){ 
+        if (validateOrcId(orcId)){ 
             this.orcId = orcId;
         } 
         else System.out.println("OrcId inválido"); 
     }
-
+    
+    @ManyToOne
+    @JoinColumn(name="artigo_id", nullable=false)
     public Artigo getArtigo() {
         return artigo;
     }

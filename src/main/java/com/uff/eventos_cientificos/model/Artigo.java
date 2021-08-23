@@ -3,16 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.eventos.cientificos;
+package com.uff.eventos_cientificos.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -20,7 +28,9 @@ import javax.persistence.OneToMany;
  * @author loham.silva
  */
 @Entity
-public class Artigo {
+@NamedQuery(name="Artigo.buscaPorVolume",
+                query="SELECT a FROM Artigo a WHERE a.volume.id = ?1")
+public class Artigo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -52,10 +62,13 @@ public class Artigo {
     
     int quantidadePaginas;
     
-    @OneToMany(mappedBy = "artigo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "artigo")
+    @JsonManagedReference
     List<Autor> autores;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="volume_id", nullable=false)
+    @JsonBackReference
     Volume volume;
     
     public Artigo() {}
@@ -123,11 +136,15 @@ public class Artigo {
         return palavrasChaveOriginais;
     }
     
+    public void getPalavrasChaveOriginais(String palavrasChaveOriginais) {
+        this.palavrasChaveOriginais = palavrasChaveOriginais;
+    }
+    
     List<String> getListaPalavrasChaveOriginais() {
         return Arrays.asList(this.palavrasChaveOriginais.split(";"));
     }
 
-    public void setPalavrasChaveOriginais(List<String> listaPalavrasChaveOriginais) {
+    public void setListaPalavrasChaveOriginais(List<String> listaPalavrasChaveOriginais) {
         String joinPalavrasChaveOriginais = String.join(";", listaPalavrasChaveOriginais);
         this.palavrasChaveOriginais = joinPalavrasChaveOriginais;
     }
@@ -136,11 +153,15 @@ public class Artigo {
         return palavrasChaveIngles;
     }
     
+    public void getPalavrasChaveIngles(String palavrasChaveIngles) {
+        this.palavrasChaveIngles = palavrasChaveIngles;
+    }
+    
     List<String> getListaPalavrasChaveIngles() {
         return Arrays.asList(this.palavrasChaveIngles.split(";"));
     }
 
-    public void setPalavrasChaveIngles(List<String> listaPalavrasChaveIngles) {
+    public void setListaPalavrasChaveIngles(List<String> listaPalavrasChaveIngles) {
         String joinPalavrasChaveIngles = String.join(";", listaPalavrasChaveIngles);
         this.palavrasChaveIngles = joinPalavrasChaveIngles;
     }
@@ -152,7 +173,8 @@ public class Artigo {
     public void setQuantidadePaginas(int quantidadePaginas) {
         this.quantidadePaginas = quantidadePaginas;
     }
-
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "artigo")
     public List<Autor> getAutores() {
         return autores;
     }
@@ -161,6 +183,8 @@ public class Artigo {
         this.autores = autores;
     }
 
+    @ManyToOne
+    @JoinColumn(name="volume_id", nullable=false)
     public Volume getVolume() {
         return volume;
     }

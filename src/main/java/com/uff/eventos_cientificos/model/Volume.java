@@ -3,23 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.eventos.cientificos;
+package com.uff.eventos_cientificos.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
  *
  * @author loham.silva
  */
-public class Volume {
+@Entity
+@NamedQueries({
+    @NamedQuery(name="Volume.buscaTodos",
+                query="SELECT v FROM Volume v")
+})
+public class Volume implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -32,16 +43,17 @@ public class Volume {
     @Column(nullable=false, length=64)
     String cidade;
     
-    @Column(nullable=false, length=10)
+    @Column(name="data_inicio", nullable=false, length=10)
     String dataInicio;
     
     @Column(nullable=false, length=2048)
     String descricao;
     
-    @OneToMany(mappedBy = "volume")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "volume")
+    @JsonManagedReference
     List<Artigo> artigos;
     
-    final static String dateFormat = "yyyy-mm-dd"; 
+    final static String dateFormat = "dd/mm/yyyy"; 
     
     public Volume() {
         
@@ -97,7 +109,8 @@ public class Volume {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "volume")
     public List<Artigo> getArtigos() {
         return artigos;
     }
