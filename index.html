@@ -1,0 +1,1086 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Eventos Cientificos</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>Eventos Cientificos</h1>
+    <div class="app-desc">Sistema para cadastrar anais de eventos científicos.</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="lohamviana@id.uff.br">lohamviana@id.uff.br</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/siuff/EventosCientificos/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Artigos">Artigos</a></h4>
+  <ul>
+  <li><a href="#atualizaArtigo"><code><span class="http-method">put</span> /volumes/{volumeId}/artigos/{artigoId}</code></a></li>
+  <li><a href="#buscaArtigoPorId"><code><span class="http-method">get</span> /volumes/{volumeId}/artigos/{artigoId}</code></a></li>
+  <li><a href="#buscaTodosArtigos"><code><span class="http-method">get</span> /volumes/{volumeId}/artigos</code></a></li>
+  <li><a href="#criaArtigo"><code><span class="http-method">post</span> /volumes/{volumeId}/artigos</code></a></li>
+  <li><a href="#deletaArtigo"><code><span class="http-method">delete</span> /volumes/{volumeId}/artigos/{artigoId}</code></a></li>
+  </ul>
+  <h4><a href="#Autores">Autores</a></h4>
+  <ul>
+  <li><a href="#atualizaAutor"><code><span class="http-method">put</span> /autores/{autorId}</code></a></li>
+  <li><a href="#buscaAutorPorId"><code><span class="http-method">get</span> /autores/{autorId}</code></a></li>
+  <li><a href="#buscaTodosAutoresPorVolume"><code><span class="http-method">get</span> /autores</code></a></li>
+  <li><a href="#criaAutor"><code><span class="http-method">post</span> /autores</code></a></li>
+  <li><a href="#deletaAutor"><code><span class="http-method">delete</span> /autores/{autorId}</code></a></li>
+  </ul>
+  <h4><a href="#Volumes">Volumes</a></h4>
+  <ul>
+  <li><a href="#atualizaVolume"><code><span class="http-method">put</span> /volumes/{volumeId}</code></a></li>
+  <li><a href="#buscaTodosVolumes"><code><span class="http-method">get</span> /volumes</code></a></li>
+  <li><a href="#buscaVolumePorId"><code><span class="http-method">get</span> /volumes/{volumeId}</code></a></li>
+  <li><a href="#criaVolume"><code><span class="http-method">post</span> /volumes</code></a></li>
+  <li><a href="#deletaVoluma"><code><span class="http-method">delete</span> /volumes/{volumeId}</code></a></li>
+  </ul>
+
+  <h1><a name="Artigos">Artigos</a></h1>
+  <div class="method"><a name="atualizaArtigo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /volumes/{volumeId}/artigos/{artigoId}</code></pre></div>
+    <div class="method-summary">Atualiza um artigo. (<span class="nickname">atualizaArtigo</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume que contém o artigo. format: int64</div><div class="param">artigoId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do artigo a ser atualizado. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Artigo">Artigo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Artigo">Artigo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"empty": false}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>123456789</id>
+  <ordem>123456789</ordem>
+  <idioma>aeiou</idioma>
+  <tituloOriginal>aeiou</tituloOriginal>
+  <tituloIngles>aeiou</tituloIngles>
+  <resumoOriginal>aeiou</resumoOriginal>
+  <resumoIngles>aeiou</resumoIngles>
+  <palavrasChaveOriginais>aeiou</palavrasChaveOriginais>
+  <palavrasChaveIngles>aeiou</palavrasChaveIngles>
+  <quantidadePaginas>123456789</quantidadePaginas>
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        <a href="#Artigo">Artigo</a>
+    <h4 class="field-label">400</h4>
+    Artigo inválido.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="buscaArtigoPorId"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /volumes/{volumeId}/artigos/{artigoId}</code></pre></div>
+    <div class="method-summary">Busca artigo por ID (<span class="nickname">buscaArtigoPorId</span>)</div>
+    <div class="method-notes">Retorna um artigo.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume que contém o artigo. format: int64</div><div class="param">artigoId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do artigo a ser retornado. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Artigo">Artigo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"empty": false}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>123456789</id>
+  <ordem>123456789</ordem>
+  <idioma>aeiou</idioma>
+  <tituloOriginal>aeiou</tituloOriginal>
+  <tituloIngles>aeiou</tituloIngles>
+  <resumoOriginal>aeiou</resumoOriginal>
+  <resumoIngles>aeiou</resumoIngles>
+  <palavrasChaveOriginais>aeiou</palavrasChaveOriginais>
+  <palavrasChaveIngles>aeiou</palavrasChaveIngles>
+  <quantidadePaginas>123456789</quantidadePaginas>
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        <a href="#Artigo">Artigo</a>
+    <h4 class="field-label">400</h4>
+    ID inválido.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Artigo ou volume não encontrado.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="buscaTodosArtigos"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /volumes/{volumeId}/artigos</code></pre></div>
+    <div class="method-summary">Retorna todos os artigos de um volume. (<span class="nickname">buscaTodosArtigos</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume que contém os artigos. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      map[String, Integer]
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"empty": false}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="criaArtigo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /volumes/{volumeId}/artigos</code></pre></div>
+    <div class="method-summary">Adiciona um novo artigo. (<span class="nickname">criaArtigo</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume que conterá o artigo. format: int64</div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Artigo">Artigo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Objeto de artigo a ser criado. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Entrada inválida
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deletaArtigo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /volumes/{volumeId}/artigos/{artigoId}</code></pre></div>
+    <div class="method-summary">Deleta um artigo. (<span class="nickname">deletaArtigo</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume que contém o artigo. format: int64</div><div class="param">artigoId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do artigo a ser deletade. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Artigo">Artigo</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Artigo">Artigo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"empty": false}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>123456789</id>
+  <ordem>123456789</ordem>
+  <idioma>aeiou</idioma>
+  <tituloOriginal>aeiou</tituloOriginal>
+  <tituloIngles>aeiou</tituloIngles>
+  <resumoOriginal>aeiou</resumoOriginal>
+  <resumoIngles>aeiou</resumoIngles>
+  <palavrasChaveOriginais>aeiou</palavrasChaveOriginais>
+  <palavrasChaveIngles>aeiou</palavrasChaveIngles>
+  <quantidadePaginas>123456789</quantidadePaginas>
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        <a href="#Artigo">Artigo</a>
+    <h4 class="field-label">400</h4>
+    Artigo inválido.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Autores">Autores</a></h1>
+  <div class="method"><a name="atualizaAutor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /autores/{autorId}</code></pre></div>
+    <div class="method-summary">Atualiza um autor existente. (<span class="nickname">atualizaAutor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">autorId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do autor a ser atualizado. format: int64</div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Autor">Autor</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Objeto de Autor a ser atualizado. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">404</h4>
+    Autor não encontrado
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="buscaAutorPorId"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /autores/{autorId}</code></pre></div>
+    <div class="method-summary">Busca autor por ID (<span class="nickname">buscaAutorPorId</span>)</div>
+    <div class="method-notes">Retorna um autor.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">autorId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do autor a ser retornado. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Autor">Autor</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"empty": false}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>123456789</id>
+  <ordem>123456789</ordem>
+  <email>aeiou</email>
+  <primeiroNome>aeiou</primeiroNome>
+  <nomeDoMeio>aeiou</nomeDoMeio>
+  <sobrenome>aeiou</sobrenome>
+  <afiliacao>aeiou</afiliacao>
+  <afiliacaoIngles>aeiou</afiliacaoIngles>
+  <nacao>aeiou</nacao>
+  <orcId>aeiou</orcId>
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        <a href="#Autor">Autor</a>
+    <h4 class="field-label">400</h4>
+    ID inválido
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Autor não encontrado.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="buscaTodosAutoresPorVolume"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /autores</code></pre></div>
+    <div class="method-summary">Busca todos os autores de artigos. (<span class="nickname">buscaTodosAutoresPorVolume</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; ID do volume que contém os autores dos artigos. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Volume">Volume</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>123456789</id>
+  <edicao>123456789</edicao>
+  <sigla>aeiou</sigla>
+  <cidade>aeiou</cidade>
+  <dataInicio>aeiou</dataInicio>
+  <descricao>aeiou</descricao>
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="criaAutor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /autores</code></pre></div>
+    <div class="method-summary">Adiciona um novo autor. (<span class="nickname">criaAutor</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Autor">Autor</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Objeto de autor a ser criado. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Entrada inválida.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deletaAutor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /autores/{autorId}</code></pre></div>
+    <div class="method-summary">Deleta um autor. (<span class="nickname">deletaAutor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">autorId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do autor a ser deletado format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    ID inválido
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Autor não encontrado.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Volumes">Volumes</a></h1>
+  <div class="method"><a name="atualizaVolume"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /volumes/{volumeId}</code></pre></div>
+    <div class="method-summary">Atualiza um volume existente. (<span class="nickname">atualizaVolume</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume a ser retornado. format: int64</div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Volume">Volume</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Objeto de Volume a ser atualizado. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">404</h4>
+    Volume não encontrado.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="buscaTodosVolumes"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /volumes</code></pre></div>
+    <div class="method-summary">Busca todos os volumes. (<span class="nickname">buscaTodosVolumes</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Volume">Volume</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>123456789</id>
+  <edicao>123456789</edicao>
+  <sigla>aeiou</sigla>
+  <cidade>aeiou</cidade>
+  <dataInicio>aeiou</dataInicio>
+  <descricao>aeiou</descricao>
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="buscaVolumePorId"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /volumes/{volumeId}</code></pre></div>
+    <div class="method-summary">Busca volume por ID (<span class="nickname">buscaVolumePorId</span>)</div>
+    <div class="method-notes">Retorna um volume.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume a ser retornado. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Volume">Volume</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{"empty": false}</code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><null>
+  <id>123456789</id>
+  <edicao>123456789</edicao>
+  <sigla>aeiou</sigla>
+  <cidade>aeiou</cidade>
+  <dataInicio>aeiou</dataInicio>
+  <descricao>aeiou</descricao>
+</null></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Operação executada com sucesso.
+        <a href="#Volume">Volume</a>
+    <h4 class="field-label">400</h4>
+    ID inválido
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Volume não encontrado.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="criaVolume"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /volumes</code></pre></div>
+    <div class="method-summary">Adiciona um novo volume. (<span class="nickname">criaVolume</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#Volume">Volume</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Objeto de volume a ser criado. </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">405</h4>
+    Entrada inválida
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deletaVoluma"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /volumes/{volumeId}</code></pre></div>
+    <div class="method-summary">Deleta um volume. (<span class="nickname">deletaVoluma</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">volumeId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID do volume a ser deletado. format: int64</div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">400</h4>
+    ID inválido.
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Volume não encontrado.
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Artigo"><code>Artigo</code> - </a></li>
+    <li><a href="#Autor"><code>Autor</code> - </a></li>
+    <li><a href="#Volume"><code>Volume</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Artigo"><code>Artigo</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ordem (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">idioma (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">tituloOriginal (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">tituloIngles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">resumoOriginal (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">resumoIngles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">palavrasChaveOriginais (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">palavrasChaveIngles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">quantidadePaginas (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">autores (optional)</div><div class="param-desc"><span class="param-type"><a href="#Autor">array[Autor]</a></span>  </div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#Volume">Volume</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Autor"><code>Autor</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ordem (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">primeiroNome (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nomeDoMeio (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sobrenome (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">afiliacao (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">afiliacaoIngles (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">nacao (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">orcId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">artigo (optional)</div><div class="param-desc"><span class="param-type"><a href="#Artigo">Artigo</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Volume"><code>Volume</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">edicao (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">sigla (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">cidade (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">dataInicio (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">descricao (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">artigos (optional)</div><div class="param-desc"><span class="param-type"><a href="#Artigo">array[Artigo]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
